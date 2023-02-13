@@ -11,6 +11,7 @@
 		<li th:each="movie:${movies}">
 			<a th:href="@{/movies/{id}(id=${movie.getId()})}" th:text="${movie.getTitle()}"></a>
 		</li>
+		<a class="" th:href="@{/}">Go back to Home</a>
 		<div th:replace="~{fragments :: script}">
 		</div>
 	</body>
