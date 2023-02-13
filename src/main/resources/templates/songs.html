@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 	<head>
-	<meta charset="ISO-8859-1">
 	<title>Pagina Film</title>
+		<div th:replace="~{fragments :: head}"></div>
 	</head>
 		<body>
+			<div th:replace="~{fragments :: navbar('songs')}"></div>
 			<h1 th:text="'Le migliori canzoni sono: ' + ${songs}"></h1>
+			<div th:replace="~{fragments :: script}"></div>
 		</body>
 </html>

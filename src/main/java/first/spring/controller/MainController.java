@@ -34,7 +34,7 @@ public class MainController {
 	public String getMovies (Model m) {
 		List<Movie> bestMovies = getBestMovies();
 		List<String> movieTitles = bestMovies.stream().map(Movie::getTitle).collect(Collectors.toList());
-		m.addAttribute ("movies", String.join(" ,",movieTitles));
+		m.addAttribute ("movies", String.join(", ",movieTitles));
 		return "movies";
 	}
 
@@ -50,7 +50,7 @@ public class MainController {
 	public String getSongs (Model s) {
 		List<Song> bestSongs = getBestSongs();
 		List<String> songsTitles = bestSongs.stream().map(Song::getTitle).collect(Collectors.toList());
-		s.addAttribute ("songs", String.join(" ,",songsTitles));
+		s.addAttribute ("songs", String.join(", ",songsTitles));
 		return "songs";
 	}
 
