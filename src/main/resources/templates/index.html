@@ -5,8 +5,18 @@
 	<div th:replace="~{fragments :: head}"></div>
 	</head>
 		<body>
-			<div th:replace="~{fragments :: navbar('home')}"></div>
-			<h1 th:text="'Best for me by ' + ${myName}"></h1>
+			<div th:replace="~{fragments :: navbar('home')}">
+			</div>
+			<h1 th:text="'Best for me by ' + ${myName}">
+			</h1>
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/movies}">Discover my Movies</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/songs}">Discover my Songs</a>
+				</li>
+			</ul>			
 			<div th:replace="~{fragments :: script}"></div>
 		</body>
 </html>

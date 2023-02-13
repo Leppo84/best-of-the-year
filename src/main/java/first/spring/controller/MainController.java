@@ -2,11 +2,11 @@ package first.spring.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import first.spring.classes.Movie;
@@ -24,35 +24,50 @@ public class MainController {
 	
 	private List<Movie> getBestMovies() {
 		List<Movie> bestMovies = new ArrayList<>();
-		bestMovies.add(new Movie(1, "Il quinto elemento"));
-		bestMovies.add(new Movie(2, "The hatefull eights"));
-		bestMovies.add(new Movie(3, "Eyes wide shut"));
+		bestMovies.add(new Movie(1, "The Fifth Element", "L. Besson"));
+		bestMovies.add(new Movie(2, "The Hateful Eights", "Q. Tarantino"));
+		bestMovies.add(new Movie(3, "Eyes Wide Shut", "S. Kubrik"));
 		return bestMovies;
 	}
 	
 	@GetMapping("/movies")
 	public String getMovies (Model m) {
 		List<Movie> bestMovies = getBestMovies();
-		List<String> movieTitles = bestMovies.stream().map(Movie::getTitle).collect(Collectors.toList());
-		m.addAttribute ("movies", String.join(", ",movieTitles));
+//		List<String> movieTitles = bestMovies.stream().map(Movie::getTitle).collect(Collectors.toList());
+		m.addAttribute ("movies", bestMovies );
 		return "movies";
+	}
+	
+	@GetMapping("/movies/{id}")
+	public String movieDetail (@PathVariable("id") String id, Model md) {
+		List<Movie> bestMovies = getBestMovies();
+		getBestMovies();
+		md.addAttribute ("movie", bestMovies.get(Integer.parseInt(id)-1));
+//		return bestMovies.get(id-1);
+		return "/movieDetail";
 	}
 
 	private List<Song> getBestSongs() {
 		List<Song> bestSongs = new ArrayList<>();
-		bestSongs.add(new Song(1, "Sandman"));
-		bestSongs.add(new Song(2, "Child in Time"));
-		bestSongs.add(new Song(3, "What a wonderfull world"));
+		bestSongs.add(new Song(1, "Sandman", "Metallica"));
+		bestSongs.add(new Song(2, "Child in Time", "Deep Purple"));
+		bestSongs.add(new Song(3, "What a wonderfull world", "L. Armstrong"));
 		return bestSongs;
 	}
 	
 	@GetMapping("/songs")
 	public String getSongs (Model s) {
 		List<Song> bestSongs = getBestSongs();
-		List<String> songsTitles = bestSongs.stream().map(Song::getTitle).collect(Collectors.toList());
-		s.addAttribute ("songs", String.join(", ",songsTitles));
+		s.addAttribute ("songs", bestSongs );
 		return "songs";
 	}
-
+	
+	@GetMapping("/songs/{id}")
+	public String songDetail (@PathVariable("id") String id, Model sd) {
+		List<Song> bestSongs = getBestSongs();
+		getBestSongs();
+		sd.addAttribute ("song", bestSongs.get(Integer.parseInt(id)-1));
+		return "/songDetail";
+	}
 	
 }

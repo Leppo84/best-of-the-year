@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 	<head>
-	<title>Pagina Film</title>
+	<title>Films</title>
 	<div th:replace="~{fragments :: head}"></div>
 	</head>
-		<body>
-			<div th:replace="~{fragments :: navbar('movies')}"></div>
-			<h1 th:text="'I migliori film sono: ' + ${movies}"></h1>
-			<div th:replace="~{fragments :: script}"></div>
-		</body>
+	<body>
+		<div th:replace="~{fragments :: navbar('movies')}">	
+		</div>
+		<h1>Best Film are:</h1>
+		<li th:each="movie:${movies}">
+			<a th:href="@{/movies/{id}(id=${movie.getId()})}" th:text="${movie.getTitle()}"></a>
+		</li>
+		<div th:replace="~{fragments :: script}">
+		</div>
+	</body>
 </html>

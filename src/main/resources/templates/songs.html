@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 	<head>
-	<title>Pagina Film</title>
+	<title>Songs</title>
 		<div th:replace="~{fragments :: head}"></div>
 	</head>
 		<body>
 			<div th:replace="~{fragments :: navbar('songs')}"></div>
-			<h1 th:text="'Le migliori canzoni sono: ' + ${songs}"></h1>
+		<h1>Best songs are:</h1>
+		<li th:each="song:${songs}">
+			<a th:href="@{/songs/{id}(id=${song.getId()})}" th:text="${song.getTitle()}"></a>
+		</li>
 			<div th:replace="~{fragments :: script}"></div>
 		</body>
 </html>
