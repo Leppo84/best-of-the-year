@@ -22,6 +22,11 @@ public class MainController {
 		return "index";
 	}
 	
+	@GetMapping("/error")
+	public String error() {
+		return "/error";
+	}
+	
 	private List<Movie> getBestMovies() {
 		List<Movie> bestMovies = new ArrayList<>();
 		bestMovies.add(new Movie(1, "The Fifth Element", "L. Besson"));
